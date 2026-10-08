@@ -1,0 +1,23 @@
+{
+  "name": "event-management",
+  "version": "1.0.0",
+  "description": "Event Management System using Node.js, Express and SQLite",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "event",
+    "management",
+    "nodejs",
+    "express",
+    "sqlite"
+  ],
+  "author": "Pooja Shahu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite3": "^5.1.7"
+  }
+}

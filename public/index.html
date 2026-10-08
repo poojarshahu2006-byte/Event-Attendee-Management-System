@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>EventHub - Event Management</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logoIcon">📅</div>
+
+            <div>
+                <h2>Event<span>Hub</span></h2>
+                <small>Manage Events</small>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a class="active" href="#dashboard">
+                🏠 Dashboard
+            </a>
+
+            <a href="#addEvent">
+                📅 Add Event
+            </a>
+
+            <a href="#attendee">
+                👤 Add Attendee
+            </a>
+
+            <a href="#events">
+                📋 View Events
+            </a>
+
+            <a href="#attendees">
+                👥 View Attendees
+            </a>
+
+            <a href="#search">
+                🔍 Search
+            </a>
+
+            <a href="#stats">
+                📊 Reports
+            </a>
+
+        </nav>
+
+
+        <div class="sidebarBottom">
+
+            <div class="calendarBig">📅</div>
+
+            <p>
+                Great events<br>
+                bring great people<br>
+                together!
+            </p>
+
+            <div class="online">
+                ● Server Online
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="brandMobile">
+                Event<span>Hub</span>
+            </div>
+
+            <div class="topSearch">
+                🔍
+                <input
+                    id="globalSearch"
+                    type="text"
+                    placeholder="Search events, attendees..."
+                >
+            </div>
+
+            <div class="profile">
+
+                🔔
+
+                <div class="avatar">
+                    P
+                </div>
+
+                <span>Pooja Shahu</span>
+
+                ▼
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard">
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <div>
+
+                    <div class="heroIcon">
+                        📅
+                    </div>
+
+                    <h1>
+                       Event & Attendee Management System
+                    </h1>
+
+                    <p>
+                        Organize Events
+                        • Register Attendees
+                        • Build your community
+                    </p>
+
+                </div>
+
+                <div class="heroText">
+                    Better<br>
+                    Events<br>
+                    Together →
+                </div>
+
+            </div>
+
+
+            <!-- KPI CARDS -->
+
+            <div class="statsGrid">
+
+                <div class="statCard blue">
+
+                    <div class="statIcon">📅</div>
+
+                    <div>
+                        <p>Total Events</p>
+                        <h2 id="totalEvents">0</h2>
+                        <small>↑ Events created</small>
+                    </div>
+
+                </div>
+
+
+                <div class="statCard purple">
+
+                    <div class="statIcon">👥</div>
+
+                    <div>
+                        <p>Total Attendees</p>
+                        <h2 id="totalAttendees">0</h2>
+                        <small>↑ Registered attendees</small>
+                    </div>
+
+                </div>
+
+
+                <div class="statCard green">
+
+                    <div class="statIcon">🎟️</div>
+
+                    <div>
+                        <p>Upcoming Events</p>
+                        <h2 id="upcomingEvents">0</h2>
+                        <small>Next events</small>
+                    </div>
+
+                </div>
+
+
+                <div class="statCard pink">
+
+                    <div class="statIcon">📊</div>
+
+                    <div>
+                        <p>Recent Registrations</p>
+                        <h2 id="recentRegistrations">0</h2>
+                        <small>Latest registrations</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TWO COLUMN -->
+
+            <div class="twoColumn">
+
+                <!-- ADD EVENT -->
+
+                <section
+                    class="panel"
+                    id="addEvent"
+                >
+
+                    <div class="panelTitle">
+
+                        <div>
+                            <h2>📅 Add New Event</h2>
+                            <p>Create a new event and make it happen!</p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="eventForm">
+
+                        <input
+                            type="hidden"
+                            id="editEventId"
+                        >
+
+                        <label>Event Name</label>
+
+                        <input
+                            id="eventName"
+                            type="text"
+                            placeholder="e.g. Tech Workshop"
+                            required
+                        >
+
+
+                        <label>Event Date</label>
+
+                        <input
+                            id="eventDate"
+                            type="date"
+                            required
+                        >
+
+
+                        <label>Venue</label>
+
+                        <input
+                            id="venue"
+                            type="text"
+                            placeholder="e.g. Seminar Hall"
+                            required
+                        >
+
+
+                        <button
+                            class="primaryBtn"
+                            type="submit"
+                            id="eventSubmit"
+                        >
+                            ＋ Add Event
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+                <!-- EVENTS -->
+
+                <section
+                    class="panel"
+                    id="events"
+                >
+
+                    <div class="panelHeader">
+
+                        <div>
+
+                            <h2>📋 All Events</h2>
+
+                            <p>
+                                View and manage your events
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="smallBtn"
+                            onclick="newEvent()"
+                        >
+                            ＋ New Event
+                        </button>
+
+                    </div>
+
+
+                    <div class="tableContainer">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Event Name</th>
+                                    <th>Date</th>
+                                    <th>Venue</th>
+                                    <th>Registered</th>
+                                    <th>Action</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="eventsTable">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- LOWER AREA -->
+
+            <div class="lowerGrid">
+
+                <!-- ATTENDEE FORM -->
+
+                <section
+                    class="panel"
+                    id="attendee"
+                >
+
+                    <div class="panelHeader">
+
+                        <div>
+                            <h2>👥 Register Attendee</h2>
+                            <p>
+                                Add new attendee to an event
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="attendeeForm">
+
+                        <div class="formRow">
+
+                            <div>
+
+                                <label>Name</label>
+
+                                <input
+                                    id="attendeeName"
+                                    type="text"
+                                    placeholder="Enter full name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div>
+
+                                <label>Email</label>
+
+                                <input
+                                    id="attendeeEmail"
+                                    type="email"
+                                    placeholder="Enter email address"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="formRow">
+
+                            <div>
+
+                                <label>Event</label>
+
+                                <select id="eventSelect" required>
+
+                                    <option value="">
+                                        Select Event
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div>
+
+                                <label>Ticket Type</label>
+
+                                <select id="ticketType" required>
+
+                                    <option value="">
+                                        Select Ticket Type
+                                    </option>
+
+                                    <option value="Student">
+                                        Student
+                                    </option>
+
+                                    <option value="Regular">
+                                        Regular
+                                    </option>
+
+                                    <option value="VIP">
+                                        VIP
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            class="primaryBtn"
+                            type="submit"
+                        >
+                            👤 Register Attendee
+                        </button>
+
+                    </form>
+
+                </section>
+
+
+                <!-- RIGHT -->
+
+                <div class="rightColumn">
+
+                    <!-- SEARCH -->
+
+                    <section
+                        class="panel"
+                        id="search"
+                    >
+
+                        <div class="panelHeader">
+
+                            <div>
+                                <h2>🔍 Search Attendees</h2>
+                                <p>
+                                    Find attendees by name, email or event
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="searchRow">
+
+                            <input
+                                id="searchInput"
+                                type="text"
+                                placeholder="Enter name, email or event..."
+                            >
+
+                            <button
+                                class="smallBtn"
+                                onclick="searchAttendees()"
+                            >
+                                Search
+                            </button>
+
+                            <button
+                                class="outlineBtn"
+                                onclick="loadAttendees()"
+                            >
+                                Show All
+                            </button>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- RECENT ATTENDEES -->
+
+                    <section
+                        class="panel"
+                        id="attendees"
+                    >
+
+                        <div class="panelHeader">
+
+                            <div>
+                                <h2>👥 Recent Attendees</h2>
+                                <p>
+                                    Latest registered attendees
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="tableContainer">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Event</th>
+                                        <th>Ticket</th>
+                                        <th>Action</th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody id="attendeesTable">
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- QUICK STATS -->
+
+                <section
+                    class="panel quickStats"
+                    id="stats"
+                >
+
+                    <div class="panelHeader">
+
+                        <h2>📊 Quick Stats</h2>
+
+                        <select>
+                            <option>This Week</option>
+                            <option>This Month</option>
+                            <option>This Year</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="quickItem">
+                        <span>📅 Events Created</span>
+                        <b id="quickEvents">0 ↑</b>
+                    </div>
+
+                    <div class="quickItem">
+                        <span>👥 Attendees Registered</span>
+                        <b id="quickAttendees">0 ↑</b>
+                    </div>
+
+                    <div class="quickItem">
+                        <span>🔍 Searches Performed</span>
+                        <b>12 ↑</b>
+                    </div>
+
+                    <div class="quickItem">
+                        <span>🗑️ Events Deleted</span>
+                        <b>0 ↑</b>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            © 2026 EventHub.
+            Built with ❤️ using Node.js, Express & SQLite.
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
